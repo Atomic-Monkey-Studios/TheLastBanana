@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isJumping;
 
-    private float Move;
+    // private float Move;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -24,9 +20,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move = Input.GetAxis("Horizontal");
+        // Move = Input.GetAxis("Horizontal");
+        
         rb.velocity = new Vector2(speed * Time.fixedDeltaTime, rb.velocity.y);
-
         if (Input.GetButtonDown("Jump") && !isJumping) {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
@@ -35,14 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = false;
-        } else if (other.gameObject.CompareTag("Enemy")) {
-            Debug.Log("OK");
-            // int TransparentEntity = LayerMask.NameToLayer("TransparentEntity");
-            // other.gameObject.layer = TransparentEntity;
-
-            Rigidbody2D otherRb = other.gameObject.GetComponent<Rigidbody2D>();
-            otherRb.AddForce(new Vector2(200, 400));
-
         }
     }
 
