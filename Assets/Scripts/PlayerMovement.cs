@@ -5,21 +5,24 @@ using UnityEngine.Assertions.Must;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
-    public float jump;
+    public float speed = 500f;
+    public float jump = 500f;
+
+    public float floorTorqueStep = 400f;
+
+    public float jumpTorqueStep = 50f;
 
     public bool isJumping;
 
-    public float jumpTorqueStep = 50f;
-    public float floorTorqueStep = 400f;
-
     // private float Move;
     private Rigidbody2D rb;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         isJumping = false;
     }
 
@@ -30,15 +33,11 @@ public class PlayerMovement : MonoBehaviour
         
         rb.velocity = new Vector2(speed * Time.fixedDeltaTime, rb.velocity.y);
         if (Input.GetButtonDown("Jump") && !isJumping) {
-            Debug.Log(SignedAngle(0f, transform.eulerAngles.z));
-            // GetComponent<Animator>().SetTrigger("Panic");
-            // if (Mathf.Abs(SignedAngle(transform.eulerAngles.z, 0f)) < 10f) 
             rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
             if (isJumping) {
-                // transform.Rotate(new Vector3(0f, 0f, jumpTorqueStep * Time.deltaTime));
                 rb.totalTorque += jumpTorqueStep * Time.deltaTime;
             } else {
                 rb.totalTorque += floorTorqueStep * Time.deltaTime;
@@ -47,16 +46,13 @@ public class PlayerMovement : MonoBehaviour
                 if (Mathf.Abs(SignedAngle(transform.eulerAngles.z, 270f)) < 10f) {
                     rb.totalTorque += 5 * jumpTorqueStep * Time.deltaTime;
                 }
-                // transform.Rotate(new Vector3(0f, 0f, floorTorqueStep * Time.deltaTime));
             }
             
         }
         if (Input.GetKey(KeyCode.RightArrow)) {
             if (isJumping) {
-                // transform.Rotate(new Vector3(0f, 0f, -jumpTorqueStep * Time.deltaTime));
                 rb.totalTorque -= jumpTorqueStep * Time.deltaTime;
             } else {
-                // transform.Rotate(new Vector3(0f, 0f, -floorTorqueStep * Time.deltaTime));
                 rb.totalTorque -= floorTorqueStep * Time.deltaTime;
 
                 Debug.Log(Mathf.Abs(SignedAngle(transform.eulerAngles.z, 90f)));
@@ -71,12 +67,14 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = false;
             rb.totalTorque = 0f;
+            animator.SetBool("isAngry", true);
         }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = true;
+            animator.SetBool("isAngry", false);
         }
     }
 
