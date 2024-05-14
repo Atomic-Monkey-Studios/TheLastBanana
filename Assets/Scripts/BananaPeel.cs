@@ -31,7 +31,7 @@ public class BananaPeel : MonoBehaviour
 
             col.enabled = false;
             rb.isKinematic = false;
-            rb.AddForce(new Vector2(-75, 200));
+            rb.AddForce(new Vector2(750, 200));
             // StartCoroutine(applyBananaEffect(other.gameObject.GetComponent<PlayerMovement>()));
         }
     }
