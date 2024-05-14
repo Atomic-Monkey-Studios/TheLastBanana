@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
@@ -9,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isJumping;
 
-    private float customTorque = 0f;
+    public float jumpTorqueStep = 50f;
+    public float floorTorqueStep = 400f;
 
     // private float Move;
     private Rigidbody2D rb;
@@ -28,42 +30,61 @@ public class PlayerMovement : MonoBehaviour
         
         rb.velocity = new Vector2(speed * Time.fixedDeltaTime, rb.velocity.y);
         if (Input.GetButtonDown("Jump") && !isJumping) {
-            Debug.Log(Mathf.Abs(transform.eulerAngles.z));
-            // rb.AddForce(new Vector2(rb.velocity.x, jump));
-            if (Mathf.Abs(transform.eulerAngles.z) < 0.5) rb.AddForce(new Vector2(rb.velocity.x, jump));
+            Debug.Log(SignedAngle(0f, transform.eulerAngles.z));
+            GetComponent<Animator>().SetTrigger("Panic");
+            if (Mathf.Abs(SignedAngle(transform.eulerAngles.z, 0f)) < 10f) rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+        if (Input.GetKey(KeyCode.LeftArrow)) {
             if (isJumping) {
-                customTorque += 5f;
+                // transform.Rotate(new Vector3(0f, 0f, jumpTorqueStep * Time.deltaTime));
+                rb.totalTorque += jumpTorqueStep * Time.deltaTime;
             } else {
-                customTorque += 20f;
+                rb.totalTorque += floorTorqueStep * Time.deltaTime;
+
+                Debug.Log(Mathf.Abs(SignedAngle(transform.eulerAngles.z, 270f)));
+                if (Mathf.Abs(SignedAngle(transform.eulerAngles.z, 270f)) < 10f) {
+                    rb.totalTorque += 5 * jumpTorqueStep * Time.deltaTime;
+                }
+                // transform.Rotate(new Vector3(0f, 0f, floorTorqueStep * Time.deltaTime));
             }
             
-            rb.AddTorque(customTorque);
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+        if (Input.GetKey(KeyCode.RightArrow)) {
             if (isJumping) {
-                customTorque -= 5f;
+                // transform.Rotate(new Vector3(0f, 0f, -jumpTorqueStep * Time.deltaTime));
+                rb.totalTorque -= jumpTorqueStep * Time.deltaTime;
             } else {
-                customTorque -= 20f;
+                // transform.Rotate(new Vector3(0f, 0f, -floorTorqueStep * Time.deltaTime));
+                rb.totalTorque -= floorTorqueStep * Time.deltaTime;
+
+                Debug.Log(Mathf.Abs(SignedAngle(transform.eulerAngles.z, 90f)));
+                if (Mathf.Abs(SignedAngle(transform.eulerAngles.z, 90f)) < 10f) {
+                    rb.totalTorque -= 5 * jumpTorqueStep * Time.deltaTime;
+                }
             }
-            rb.AddTorque(customTorque);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = false;
-            customTorque = 0f;
+            rb.totalTorque = 0f;
         }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = true;
-            customTorque = 0f;
-            rb.totalTorque = 0f;
         }
+    }
+
+
+    private float CustomMod(float a, int n) {
+        return (a % n + n) % n;
+    }
+    private float SignedAngle(float angleA, float angleB) {
+        float a = angleA - angleB;
+        return CustomMod((a + 180), 360) - 180;
     }
 }
