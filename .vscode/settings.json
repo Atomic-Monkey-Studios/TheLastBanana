@@ -2,5 +2,5 @@
     "files.exclude": {
         "**/*.meta": true
     },
-    "dotnet.defaultSolution": "TheLastBanana.sln"
+    "dotnet.defaultSolution": "The last Banana.sln"
 }
