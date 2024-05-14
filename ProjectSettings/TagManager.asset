@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Enemy
   - Platform
-  - Death
   - Item
   layers:
   - Default

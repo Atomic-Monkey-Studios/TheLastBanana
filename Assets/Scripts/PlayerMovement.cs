@@ -31,8 +31,9 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(speed * Time.fixedDeltaTime, rb.velocity.y);
         if (Input.GetButtonDown("Jump") && !isJumping) {
             Debug.Log(SignedAngle(0f, transform.eulerAngles.z));
-            GetComponent<Animator>().SetTrigger("Panic");
-            if (Mathf.Abs(SignedAngle(transform.eulerAngles.z, 0f)) < 10f) rb.AddForce(new Vector2(rb.velocity.x, jump));
+            // GetComponent<Animator>().SetTrigger("Panic");
+            // if (Mathf.Abs(SignedAngle(transform.eulerAngles.z, 0f)) < 10f) 
+            rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
