@@ -91,14 +91,6 @@ PrefabInstance:
       propertyPath: m_Distance
       value: 0.05791033
       objectReference: {fileID: 0}
-    - target: {fileID: 4922679337128709412, guid: b1b7488d8be70cb43a8eed2fd367e2ec, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922679337128709412, guid: b1b7488d8be70cb43a8eed2fd367e2ec, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.001
-      objectReference: {fileID: 0}
     - target: {fileID: 5907041776683632739, guid: b1b7488d8be70cb43a8eed2fd367e2ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.174
