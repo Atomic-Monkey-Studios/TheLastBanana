@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
             float jump = Mathf.Min(jumpStrength, maxJumpStrength);
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             jumpStrength = 0f;
-
         }
 
         // if (Input.GetButtonDown("Jump") && !isJumping) {
@@ -90,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = true;
+            jumpStrength = 0f;
             animator.SetBool("isAngry", false);
         }
     }
