@@ -22,6 +22,7 @@ public class EnemyCollision : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player")) {
+            Debug.Log("PAF");
             rb.AddForce(new Vector2(200, 400));
             col.enabled = false;
         }
