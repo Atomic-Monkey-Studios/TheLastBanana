@@ -24,10 +24,17 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+    void OnEnable() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         isJumping = false;
         jumpStrength = 0f;
+
+        animator.SetBool("isWalking", true);
+        animator.SetFloat("walkingSpeed", 0.25f);
     }
 
     // Update is called once per frame
@@ -82,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = false;
             rb.totalTorque = 0f;
-            animator.SetBool("isAngry", true);
+            // animator.SetBool("isAngry", true);
         }
     }
 
@@ -90,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = true;
             jumpStrength = 0f;
-            animator.SetBool("isAngry", false);
+            // animator.SetBool("isAngry", false);
         }
     }
 
