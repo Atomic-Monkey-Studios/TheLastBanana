@@ -1402,6 +1402,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9009944364769818332, guid: d037bf90f9ad5a24cbfd915cb1103672, type: 3}
   m_PrefabInstance: {fileID: 2418793697167859186}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1780869143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780869134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b2b7d1afb77a9f42884410dfdacfb5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayPanelLocation: {fileID: 0}
+  walkingSpeed: 10
 --- !u!1 &1835917067
 GameObject:
   m_ObjectHideFlags: 0
@@ -5459,6 +5473,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1994798420493325300, guid: d037bf90f9ad5a24cbfd915cb1103672, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6815385809823806980, guid: d037bf90f9ad5a24cbfd915cb1103672, type: 3}
       propertyPath: m_Distance
       value: 0.05791039
@@ -5510,7 +5528,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9009944364769818332, guid: d037bf90f9ad5a24cbfd915cb1103672, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1780869143}
   m_SourcePrefab: {fileID: 100100000, guid: d037bf90f9ad5a24cbfd915cb1103672, type: 3}
 --- !u!1001 &2969805533601811341
 PrefabInstance:
