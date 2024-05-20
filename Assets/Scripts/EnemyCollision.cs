@@ -24,6 +24,7 @@ public class EnemyCollision : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) {
             Debug.Log("PAF");
             rb.AddForce(new Vector2(200, 400));
+            other.gameObject.GetComponent<Animator>().SetTrigger("punch");
             col.enabled = false;
         }
     }
