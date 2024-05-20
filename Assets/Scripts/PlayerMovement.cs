@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpStrength = 0f;
     public float maxJumpStrength = 500f;
-    public float jumpStrengthStep = 250f;
+    public float jumpStrengthStep = 1f;
 
     // private float Move;
     private Rigidbody2D rb;
@@ -37,11 +37,11 @@ public class PlayerMovement : MonoBehaviour
         
         rb.velocity = new Vector2(speed * Time.fixedDeltaTime, rb.velocity.y);
 
-        if (Input.GetButton("Jump") && !isJumping) {
+        if (Input.GetKey(KeyCode.UpArrow) && !isJumping) {
             jumpStrength += jumpStrengthStep * Time.fixedDeltaTime;
         }
 
-        if (Input.GetButtonUp("Jump") && !isJumping) {
+        if (Input.GetKeyUp(KeyCode.UpArrow) && !isJumping) {
             float jump = Mathf.Min(jumpStrength, maxJumpStrength);
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             jumpStrength = 0f;
