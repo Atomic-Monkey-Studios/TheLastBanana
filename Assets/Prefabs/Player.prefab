@@ -136,6 +136,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 25578818414060601, guid: b1b7488d8be70cb43a8eed2fd367e2ec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1994798420493325300}
+    - targetCorrespondingSourceObject: {fileID: 25578818414060601, guid: b1b7488d8be70cb43a8eed2fd367e2ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7300430223970281287}
   m_SourcePrefab: {fileID: 100100000, guid: b1b7488d8be70cb43a8eed2fd367e2ec, type: 3}
 --- !u!4 &7109197268338955583 stripped
 Transform:
@@ -174,7 +177,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 500
-  jump: 500
   floorTorqueStep: 400
   jumpTorqueStep: 50
   isJumping: 0
+  jumpStrength: 0
+  maxJumpStrength: 500
+  jumpStrengthStep: 250
+--- !u!114 &7300430223970281287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9009944364769818332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89bf6d3eb1583c47a79aea50d409cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
