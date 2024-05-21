@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 500f;
 
-    public float floorTorqueStep = 400f;
+    public float floorTorqueStep = 8.3333f;
 
     public float jumpTorqueStep = 50f;
 
@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpStrength = 0f;
     public float maxJumpStrength = 500f;
-    public float jumpStrengthStep = 1f;
+    public float jumpStrengthStep = 250f;
 
     // private float Move;
     private Rigidbody2D rb;
@@ -42,10 +42,10 @@ public class PlayerMovement : MonoBehaviour
     {
         // Move = Input.GetAxis("Horizontal");
         
-        rb.velocity = new Vector2(speed * Time.fixedDeltaTime, rb.velocity.y);
+        rb.velocity = new Vector2(speed, rb.velocity.y);
 
         if (Input.GetKey(KeyCode.UpArrow) && !isJumping) {
-            jumpStrength += jumpStrengthStep * Time.fixedDeltaTime;
+            jumpStrength += jumpStrengthStep * Time.deltaTime;
         }
 
         if (Input.GetKeyUp(KeyCode.UpArrow) && !isJumping) {
