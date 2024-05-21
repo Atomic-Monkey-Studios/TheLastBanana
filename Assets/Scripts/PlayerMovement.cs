@@ -6,13 +6,16 @@ using UnityEngine.Assertions.Must;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 500f;
-    public float jump = 500f;
 
     public float floorTorqueStep = 400f;
 
     public float jumpTorqueStep = 50f;
 
     public bool isJumping;
+
+    public float jumpStrength = 0f;
+    public float maxJumpStrength = 500f;
+    public float jumpStrengthStep = 1f;
 
     // private float Move;
     private Rigidbody2D rb;
@@ -21,9 +24,17 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+    void OnEnable() {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         isJumping = false;
+        jumpStrength = 0f;
+
+        animator.SetBool("isWalking", true);
+        animator.SetFloat("walkingSpeed", 0.25f);
     }
 
     // Update is called once per frame
@@ -32,9 +43,21 @@ public class PlayerMovement : MonoBehaviour
         // Move = Input.GetAxis("Horizontal");
         
         rb.velocity = new Vector2(speed * Time.fixedDeltaTime, rb.velocity.y);
-        if (Input.GetButtonDown("Jump") && !isJumping) {
-            rb.AddForce(new Vector2(rb.velocity.x, jump));
+
+        if (Input.GetKey(KeyCode.UpArrow) && !isJumping) {
+            jumpStrength += jumpStrengthStep * Time.fixedDeltaTime;
         }
+
+        if (Input.GetKeyUp(KeyCode.UpArrow) && !isJumping) {
+            float jump = Mathf.Min(jumpStrength, maxJumpStrength);
+            rb.AddForce(new Vector2(rb.velocity.x, jump));
+            jumpStrength = 0f;
+        }
+
+        // if (Input.GetButtonDown("Jump") && !isJumping) {
+        //     animator.SetTrigger("jump");
+            
+        // }
 
         if (Input.GetKey(KeyCode.LeftArrow)) {
             if (isJumping) {
@@ -42,12 +65,11 @@ public class PlayerMovement : MonoBehaviour
             } else {
                 rb.totalTorque += floorTorqueStep * Time.deltaTime;
 
-                Debug.Log(Mathf.Abs(SignedAngle(transform.eulerAngles.z, 270f)));
+                // Debug.Log(Mathf.Abs(SignedAngle(transform.eulerAngles.z, 270f)));
                 if (Mathf.Abs(SignedAngle(transform.eulerAngles.z, 270f)) < 10f) {
                     rb.totalTorque += 5 * jumpTorqueStep * Time.deltaTime;
                 }
             }
-            
         }
         if (Input.GetKey(KeyCode.RightArrow)) {
             if (isJumping) {
@@ -55,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
             } else {
                 rb.totalTorque -= floorTorqueStep * Time.deltaTime;
 
-                Debug.Log(Mathf.Abs(SignedAngle(transform.eulerAngles.z, 90f)));
+                // Debug.Log(Mathf.Abs(SignedAngle(transform.eulerAngles.z, 90f)));
                 if (Mathf.Abs(SignedAngle(transform.eulerAngles.z, 90f)) < 10f) {
                     rb.totalTorque -= 5 * jumpTorqueStep * Time.deltaTime;
                 }
@@ -67,14 +89,15 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = false;
             rb.totalTorque = 0f;
-            animator.SetBool("isAngry", true);
+            // animator.SetBool("isAngry", true);
         }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = true;
-            animator.SetBool("isAngry", false);
+            jumpStrength = 0f;
+            // animator.SetBool("isAngry", false);
         }
     }
 
@@ -84,6 +107,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private float SignedAngle(float angleA, float angleB) {
         float a = angleA - angleB;
-        return CustomMod((a + 180), 360) - 180;
+        return CustomMod(a + 180, 360) - 180;
     }
 }

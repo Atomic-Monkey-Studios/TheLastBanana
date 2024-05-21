@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+public class KillCounter : MonoBehaviour
 {
-
-    public GameObject target;
+    
+    public int killCount = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        killCount = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(target.transform.position.x + 5, 0, -10);
+        
     }
 }
