@@ -5,9 +5,9 @@ using UnityEngine.Assertions.Must;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 500f;
+    public float speed = 8.3333f;
 
-    public float floorTorqueStep = 8.3333f;
+    public float floorTorqueStep = 500f;
 
     public float jumpTorqueStep = 50f;
 

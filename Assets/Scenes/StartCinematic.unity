@@ -29211,16 +29211,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1994798420493325300, guid: d037bf90f9ad5a24cbfd915cb1103672, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1994798420493325300, guid: d037bf90f9ad5a24cbfd915cb1103672, type: 3}
-      propertyPath: maxJumpStrength
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 1994798420493325300, guid: d037bf90f9ad5a24cbfd915cb1103672, type: 3}
       propertyPath: jumpStrengthStep
-      value: 75
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 2819120459890128112, guid: d037bf90f9ad5a24cbfd915cb1103672, type: 3}
       propertyPath: m_Mass
@@ -29236,7 +29228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6815385809823806980, guid: d037bf90f9ad5a24cbfd915cb1103672, type: 3}
       propertyPath: m_Distance
-      value: 0.05239379
+      value: 0.052393857
       objectReference: {fileID: 0}
     - target: {fileID: 7109197268338955583, guid: d037bf90f9ad5a24cbfd915cb1103672, type: 3}
       propertyPath: m_LocalScale.x

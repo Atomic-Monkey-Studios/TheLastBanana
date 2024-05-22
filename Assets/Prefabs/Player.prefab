@@ -176,8 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2dd778019c99645903932995324ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
-  floorTorqueStep: 400
+  speed: 8.3333
+  floorTorqueStep: 500
   jumpTorqueStep: 50
   isJumping: 0
   jumpStrength: 0
@@ -195,3 +195,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89bf6d3eb1583c47a79aea50d409cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killCount: 0
