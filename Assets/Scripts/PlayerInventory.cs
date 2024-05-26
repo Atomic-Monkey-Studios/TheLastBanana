@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -16,7 +17,13 @@ public class PlayerInventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Destroy(heldItem);
+            if (heldItem.IsDestroyed()) return;
+            if (heldItem.CompareTag("Item")) {
+                heldItem.GetComponent<EatFruit>().Eat();
+            }
+            if (heldItem.CompareTag("Banana")) {
+                heldItem.GetComponent<EatFruit>().Eat();
+            }
         }
     }
 

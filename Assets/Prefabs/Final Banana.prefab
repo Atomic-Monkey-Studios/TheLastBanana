@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4631675174842825284}
   - component: {fileID: 1509703056179340851}
   m_Layer: 0
-  m_Name: banana final
+  m_Name: Final Banana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 418655784488158866}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 176.9674, y: -2.3545403, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 177.5438, y: -1.7531, z: 0}
+  m_LocalScale: {x: 1.5012, y: 1.5012, z: 1.5012}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

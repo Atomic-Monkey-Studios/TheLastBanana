@@ -19,7 +19,8 @@ public class Death : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
             string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);
+            SceneChanger.Instance.ChangeScene(currentSceneName);
+            // SceneManager.LoadScene(currentSceneName);
         } else if (other.gameObject.CompareTag("Enemy")) {
             Destroy(other.gameObject); // DIE STUPID MONKEY !
         }
