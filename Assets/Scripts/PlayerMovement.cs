@@ -53,12 +53,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             jumpStrength = 0f;
         }
-
-        // if (Input.GetButtonDown("Jump") && !isJumping) {
-        //     animator.SetTrigger("jump");
-            
-        // }
-
+        
         if (Input.GetKey(KeyCode.LeftArrow)) {
             if (isJumping) {
                 rb.totalTorque += jumpTorqueStep * Time.deltaTime;
@@ -86,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
+        if (!enabled) return; 
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = false;
             rb.totalTorque = 0f;
@@ -94,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCollisionExit2D(Collision2D other) {
+        if (!enabled) return; 
         if (other.gameObject.CompareTag("Platform")) {
             isJumping = true;
             jumpStrength = 0f;
