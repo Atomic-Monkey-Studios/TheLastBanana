@@ -5,13 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/StartCinematic.unity
-    guid: 526c1b1985ba1e4469aa43b49b79e4ab
+    path: Assets/Scenes/FinalGame.unity
+    guid: 4d94b606b3b6f7b4a99a80a512aaf7c6
   - enabled: 1
-    path: Assets/Scenes/LevelDesign.unity
-    guid: 6a877c41053fe9d4d82695d719a620a2
+    path: Assets/Scenes/end/BananasAndDeath.unity
+    guid: e2dc91e3fdfe4314bb17b992c11cd894
+  - enabled: 1
+    path: Assets/Scenes/end/BananasAndLove.unity
+    guid: f8d72c45daeb7aa48b02140a20332dea
+  - enabled: 1
+    path: Assets/Scenes/end/NoBananasAndDeath.unity
+    guid: 821d885827b01124f950f48db9312f56
+  - enabled: 1
+    path: Assets/Scenes/end/NoBananasAndFight.unity
+    guid: 7b1d8e9c63d1ac14598d2a1f0f0cfce2
   m_configObjects: {}

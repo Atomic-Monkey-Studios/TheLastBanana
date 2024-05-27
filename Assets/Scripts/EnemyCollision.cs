@@ -25,7 +25,7 @@ public class EnemyCollision : MonoBehaviour
             Debug.Log("PAF");
             rb.AddForce(new Vector2(200, 400));
             other.gameObject.GetComponent<Animator>().SetTrigger("punch");
-            other.gameObject.GetComponent<KillCounter>().killCount++;
+            other.gameObject.GetComponent<EndGame>().killCount++;
             col.enabled = false;
         }
     }

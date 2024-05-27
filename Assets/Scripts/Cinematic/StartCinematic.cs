@@ -25,6 +25,7 @@ public class StartCinematic : MonoBehaviour
     void OnEnable() {
         Debug.Log("Starting cinematic n°1");
         gameObject.GetComponent<PlayerMovement>().enabled = false;
+        gameObject.GetComponent<Animator>().SetBool("isWalking", true);
         gameObject.GetComponent<Animator>().SetFloat("walkingSpeed", 0.1f);
     }
 
