@@ -5,13 +5,15 @@ using UnityEngine;
 public class BananaPeel : MonoBehaviour
 {
 
-    Collider2D col;
-    Rigidbody2D rb;
+    private Collider2D col;
+    private Rigidbody2D rb;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class BananaPeel : MonoBehaviour
             Debug.Log("BANANA PEEL");
             other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 400f));
             other.transform.Rotate(0f, 0f, 90f, Space.Self);
+            audioSource.Play();
 
             col.enabled = false;
             rb.isKinematic = false;

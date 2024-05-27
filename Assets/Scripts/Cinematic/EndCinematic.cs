@@ -11,6 +11,9 @@ public class EndCinematic : MonoBehaviour
     public Transform finalBananaLocation;
     public Transform endLocation;
 
+    public AudioSource mainMusic;
+    public AudioSource heavenMusic;
+
     public float walkingSpeed = 4f;
 
     private bool waitingForInput = false;
@@ -30,6 +33,9 @@ public class EndCinematic : MonoBehaviour
         gameObject.GetComponent<PlayerMovement>().enabled = false;
         gameObject.GetComponent<Animator>().SetBool("isWalking", true);
         gameObject.GetComponent<Animator>().SetFloat("walkingSpeed", 0.1f);
+        gameObject.GetComponent<Animator>().SetBool("isAngry", false);
+        mainMusic.Stop();
+        heavenMusic.Play();
     }
 
     // Update is called once per frame

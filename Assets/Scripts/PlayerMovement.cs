@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxJumpStrength = 500f;
     public float jumpStrengthStep = 250f;
 
+    public AudioSource audioSource;
+
     // private float Move;
     private Rigidbody2D rb;
     private Animator animator;
@@ -24,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     void OnEnable() {
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.UpArrow) && !isJumping) {
             float jump = Mathf.Min(jumpStrength, maxJumpStrength);
+            audioSource.Play();
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             jumpStrength = 0f;
         }

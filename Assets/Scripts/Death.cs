@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class Death : MonoBehaviour
 {
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +18,7 @@ public class Death : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
             string currentSceneName = SceneManager.GetActiveScene().name;
+            GetComponent<AudioSource>().Play();
             SceneChanger.Instance.ChangeScene(currentSceneName);
             // SceneManager.LoadScene(currentSceneName);
         } else if (other.gameObject.CompareTag("Enemy")) {

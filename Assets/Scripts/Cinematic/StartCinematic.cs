@@ -11,6 +11,10 @@ public class StartCinematic : MonoBehaviour
 
     public float walkingSpeed = 4f;
 
+    public AudioSource panicSource;
+    public AudioSource mainMusic;
+
+
 
     private CinematicPhase phase = CinematicPhase.Start;
 
@@ -50,9 +54,10 @@ public class StartCinematic : MonoBehaviour
         yield return new WaitForSeconds(4.5f);
 
         animator.SetBool("isAngry", true);
-        gameObject.GetComponent<PlayerMovement>().enabled = true;
-        gameObject.GetComponent<StartCinematic>().enabled = false;
-        // SceneChanger.Instance.ChangeScene("LevelDesign");
+        panicSource.Play();
+        mainMusic.Play();
+        GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<StartCinematic>().enabled = false;
     }
 
 }

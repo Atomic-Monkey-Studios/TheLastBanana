@@ -7,6 +7,7 @@ public class PlayerInventory : MonoBehaviour
     
     public Transform itemSlot;
     public GameObject heldItem;
+    public AudioSource audioSource;
 
     private bool eating = false;
 
@@ -36,6 +37,7 @@ public class PlayerInventory : MonoBehaviour
 
     IEnumerator EatCoroutine() {
         heldItem.GetComponent<Animator>().SetTrigger("eat");
+        audioSource.Play();
         yield return new WaitForSeconds(1f);
         Destroy(heldItem);
         eating = false;
