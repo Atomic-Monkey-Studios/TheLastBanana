@@ -45,14 +45,14 @@ public class PlayerMovement : MonoBehaviour
         
         rb.velocity = new Vector2(speed, rb.velocity.y);
 
-        if (Input.GetKey(KeyCode.UpArrow) && !isJumping) {
-            jumpStrength += jumpStrengthStep * Time.deltaTime;
-        }
+        // if (Input.GetKey(KeyCode.UpArrow) && !isJumping) {
+        //     jumpStrength += jumpStrengthStep * Time.deltaTime;
+        // }
 
         if (Input.GetKeyUp(KeyCode.UpArrow) && !isJumping) {
             float jump = Mathf.Min(jumpStrength, maxJumpStrength);
             audioSource.Play();
-            rb.AddForce(new Vector2(rb.velocity.x, jump));
+            rb.AddForce(new Vector2(rb.velocity.x, maxJumpStrength));
             jumpStrength = 0f;
         }
         
